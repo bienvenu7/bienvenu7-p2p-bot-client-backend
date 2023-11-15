@@ -35,8 +35,6 @@ const bot = new Telegraf(process.env.TELEGRAM_BOT_API_KEY as string);
 
 let key: any = null;
 
-// bot.telegram.sendMessage(1180624081, "yes");
-
 bot.command("start", async (context) => {
   const chatId = context.chat.id;
   key = context.payload;

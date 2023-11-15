@@ -19,7 +19,6 @@ app.listen(PORT, () => {
 });
 const bot = new Telegraf(process.env.TELEGRAM_BOT_API_KEY);
 let key = null;
-// bot.telegram.sendMessage(1180624081, "yes");
 bot.command("start", async (context) => {
     const chatId = context.chat.id;
     key = context.payload;
@@ -62,7 +61,7 @@ bot.action([
         context.replyWithHTML("Great!\nPlease, wait while we're traiting your transaction");
         const idToReply = context.match[0].split(" ")[context.match[0].split(" ").length - 1];
         try {
-            const resUser = await axios.get(`http://localhost:3001/wallet/${id}`);
+            const resUser = await axios.get(`https://p2p-backend-4mva.onrender.com/wallet/${id}`);
             const user = await resUser.data;
             if (user.user.isSeller) {
                 await bot.telegram.sendMessage(idToReply, `The costomer accepeted to deal with you.\nPlease send Dirhams to this bank account bellow 👇🏽👇🏽👇🏽\n ${user.user.wallet}`, {
